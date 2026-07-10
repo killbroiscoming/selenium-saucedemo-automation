@@ -120,7 +120,7 @@ Create a local configuration file at:
 src/main/resources/config.properties
 ```
 
-Copy the example configuration file:
+Copy the configuration file:
 
 ```bash
 cp src/main/resources/config.properties.example src/main/resources/config.properties
@@ -142,8 +142,6 @@ firstname=Test
 lastname=User
 postalCode=SW1A1AA
 ```
-
-`config.properties` should not be committed to GitHub. Keep it in `.gitignore`.
 
 ## Running Tests
 
