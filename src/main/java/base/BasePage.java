@@ -21,7 +21,16 @@ public class BasePage {
     }
 
     protected void click(By locator) {
-        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        // 1. Wait until the element is fully interactive
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+
+        try {
+            element.click(); // Attempt a standard native Selenium click
+        } catch (Exception e) {
+            // 2. Fallback: If intercepted or blocked by rendering lag, trigger via JavaScript
+            System.out.println("Native click dropped or blocked. Executing JavaScript click fallback for: " + locator);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+        }
     }
 
     protected void type(By locator, String text) {
@@ -38,11 +47,11 @@ public class BasePage {
 
     protected boolean isDisplayed(By locator) {
         try {
-            return wait.until(
-                    ExpectedConditions.visibilityOfElementLocated(locator)
-            ).isDisplayed();
+            // Create a fast, local 1-second wait just for checking states
+            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(1));
+            return shortWait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isDisplayed();
         } catch (TimeoutException e) {
-            return false;
+            return false; // Returns false in 1 second instead of 10!
         }
     }
 

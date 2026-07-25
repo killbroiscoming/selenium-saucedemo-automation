@@ -4,7 +4,6 @@
     
     <listeners>
         <listener class-name="listeners.RetryListener"></listener>
-        <listener class-name="io.qameta.allure.testng.AllureTestNg"></listener>
         <listener class-name="listeners.ScreenshotListener"></listener>
     </listeners>
     

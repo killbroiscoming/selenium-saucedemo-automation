@@ -41,16 +41,7 @@ public class ProductsPage extends BasePage {
         By addBtn = addToCartButton(productName);
         By removeBtn = removeButton(productName);
 
-        // FIX: Re-try click if the application misses the event listener initialization window
-        int attempts = 0;
-        while (attempts < 3) {
-            click(addBtn);
-           if (isDisplayed(removeBtn)) {
-                break; // State transitioned successfully!
-            }
-            attempts++;
-        }
-
+        click(addBtn);
         // Final explicit wait anchor to guarantee stability
         waitForVisible(removeBtn);
         return this;
@@ -60,15 +51,7 @@ public class ProductsPage extends BasePage {
         By addBtn = addToCartButton(productName);
         By removeBtn = removeButton(productName);
 
-        int attempts = 0;
-        while (attempts < 3) {
-            click(removeBtn);
-           if (isDisplayed(addBtn)) {
-                break;
-            }
-            attempts++;
-        }
-
+        click(removeBtn);
         waitForVisible(addBtn);
         return this;
     }

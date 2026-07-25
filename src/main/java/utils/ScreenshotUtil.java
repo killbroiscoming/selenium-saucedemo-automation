@@ -11,8 +11,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class ScreenshotUtil {
@@ -27,8 +25,12 @@ public class ScreenshotUtil {
         byte[] screenshotBytes =
                 ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 
-        saveScreenshotToFolder(screenshotBytes, testName);
-
+        // Only waste disk I/O operations if running on a local machine
+        if(System.getenv("GITHUB_ACTIONS") == null){
+            saveScreenshotToFolder(screenshotBytes, testName);
+        } else {
+            System.out.println("CI Cloud Environment Detected: Skipping local file write. Stream attached to Allure directly.");
+        }
         return screenshotBytes;
     }
 
@@ -44,13 +46,12 @@ public class ScreenshotUtil {
 
         try {
             Files.createDirectories(folderpath);
-
             Files.write(filePath,screenshotBytes);
 
-            System.out.printf("Screenshot saved: " +filePath.toAbsolutePath());
+            System.out.println("Screenshot saved: " +filePath.toAbsolutePath());
 
         } catch (IOException e) {
-            System.out.printf("Failed to save screenshot: ", e.getMessage());
+            System.out.println("Failed to save screenshot: "+ e.getMessage());
         }
 
 
