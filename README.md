@@ -52,6 +52,9 @@ selenium-java-testng-automation-framework
 │       └── resources
 │           └── config.properties
 │
+├── .github
+│   └── workflows
+│       └── selenium-tests.yml
 ├── pom.xml
 ├── testng.xml
 ├── .gitignore
@@ -87,24 +90,27 @@ This project follows the Page Object Model design pattern.
 - **ConfigReader** loads test data and environment values from `config.properties`.
 - **Listeners** manage retry logic and screenshots for failed tests.
 
-  The framework follows a layered architecture.
+### Architecture
 
-```
-Tests
-    │
-    ▼
+The framework is organized into layers, allowing each component to have a single responsibility.
+
+```text
+Test Classes
+      │
+      ▼
 Page Objects
-    │
-    ▼
+      │
+      ▼
 Base Page
-    │
-    ▼
+      │
+      ▼
 Selenium WebDriver
-    │
-    ▼
+      │
+      ▼
 Browser
-
 ```
+
+This layered architecture keeps test cases clean and focused on business scenarios while encapsulating UI interactions within reusable page objects. As the application grows, new pages and test cases can be added with minimal changes to the existing framework.
 
 ## Prerequisites
 
@@ -162,6 +168,20 @@ firstname=Test
 lastname=User
 postalCode=SW1A1AA
 ```
+## Continuous Integration
+
+This project uses GitHub Actions to automatically execute UI tests.
+
+The pipeline performs the following tasks:
+
+- Checkout source code
+- Configure Java 17
+- Cache Maven dependencies
+- Execute Selenium TestNG tests
+- Generate Allure results
+- Upload test artifacts
+- Generate Allure HTML reports
+- Publish reports to GitHub Pages
 
 ## Running Tests
 
