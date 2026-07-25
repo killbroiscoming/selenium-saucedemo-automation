@@ -1,5 +1,5 @@
 # Selenium Java Test Automation Framework
-
+![Build Status](https://github.com/killbroiscoming/selenium-saucedemo-automation/actions/workflows/selenium-tests.yml/badge.svg)
 A UI test automation framework built with Java, Selenium WebDriver, TestNG, and Maven. The project automates core e-commerce user flows on Sauce Demo, including login, adding products to the cart, removing products, cart validation, and checkout.
 
 ## Tech Stack
@@ -11,6 +11,8 @@ A UI test automation framework built with Java, Selenium WebDriver, TestNG, and 
 - Page Object Model (POM)
 - Allure Report
 - Git and GitHub
+- GitHub Actions (CI)
+- GitHub Pages (Allure Report Hosting)
 - IntelliJ IDEA
 
 ## Project Structure
@@ -33,8 +35,6 @@ selenium-java-testng-automation-framework
 │   │   │   └── utils
 │   │   │       ├── ConfigReader.java
 │   │   │       └── ScreenshotUtil.java
-│   │   └── resources
-│   │       └── config.properties
 │   │
 │   └── test
 │       ├── java
@@ -50,6 +50,7 @@ selenium-java-testng-automation-framework
 │       │       ├── CartTest.java
 │       │       └── CheckoutTest.java
 │       └── resources
+│           └── config.properties
 │
 ├── pom.xml
 ├── testng.xml
@@ -85,6 +86,25 @@ This project follows the Page Object Model design pattern.
 - **BaseTest** manages browser setup and teardown.
 - **ConfigReader** loads test data and environment values from `config.properties`.
 - **Listeners** manage retry logic and screenshots for failed tests.
+
+  The framework follows a layered architecture.
+
+```
+Tests
+    │
+    ▼
+Page Objects
+    │
+    ▼
+Base Page
+    │
+    ▼
+Selenium WebDriver
+    │
+    ▼
+Browser
+
+```
 
 ## Prerequisites
 
