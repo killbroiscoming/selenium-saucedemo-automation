@@ -183,6 +183,26 @@ The pipeline performs the following tasks:
 - Generate Allure HTML reports
 - Publish reports to GitHub Pages
 
+  
+```text
+Developer Push
+       │
+       ▼
+GitHub Actions
+       │
+       ▼
+Build Project
+       │
+       ▼
+Run Selenium Tests
+       │
+       ▼
+Generate Allure Report
+       │
+       ▼
+Publish to GitHub Pages
+```
+
 ## Running Tests
 
 Run all tests:
