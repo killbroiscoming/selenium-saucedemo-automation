@@ -1,5 +1,5 @@
 # Selenium Java Test Automation Framework
-![Build Status](https://github.com/killbroiscoming/selenium-saucedemo-automation/actions/workflows/selenium-tests.yml/badge.svg)
+[![Selenium Automation Testing](https://github.com/killbroiscoming/selenium-saucedemo-automation/actions/workflows/ui-tests.yml/badge.svg)](https://github.com/killbroiscoming/selenium-saucedemo-automation/actions/workflows/ui-tests.yml)
 A UI test automation framework built with Java, Selenium WebDriver, TestNG, and Maven. The project automates core e-commerce user flows on Sauce Demo, including login, adding products to the cart, removing products, cart validation, and checkout.
 
 ## Tech Stack
