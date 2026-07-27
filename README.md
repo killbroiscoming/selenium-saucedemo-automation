@@ -1,19 +1,31 @@
 # Selenium Java Test Automation Framework
 [![Selenium Automation Testing](https://github.com/killbroiscoming/selenium-saucedemo-automation/actions/workflows/ui-tests.yml/badge.svg)](https://github.com/killbroiscoming/selenium-saucedemo-automation/actions/workflows/ui-tests.yml)
-A UI test automation framework built with Java, Selenium WebDriver, TestNG, and Maven. The project automates core e-commerce user flows on Sauce Demo, including login, adding products to the cart, removing products, cart validation, and checkout.
+A Java-based UI automation framework built with **Selenium WebDriver**, **TestNG**, and **Maven**. The project demonstrates a clean and scalable automation architecture using the **Page Object Model (POM)**, reusable page components, retry mechanisms, Allure reporting, and GitHub Actions CI.
 
-## Tech Stack
+The framework automates core e-commerce user journeys on the Sauce Demo application, including authentication, product management, cart validation, and checkout.
 
-- Java 17
-- Selenium WebDriver
-- TestNG
-- Maven
-- Page Object Model (POM)
-- Allure Report
-- Git and GitHub
-- GitHub Actions (CI)
-- GitHub Pages (Allure Report Hosting)
-- IntelliJ IDEA
+# Project Overview
+
+This project demonstrates how to design a maintainable Selenium automation framework following industry best practices.
+
+The framework separates page objects, reusable Selenium actions, configuration, listeners, and test logic into independent layers, making it easy to maintain and extend as new pages and test scenarios are added.
+
+
+# Tech Stack
+
+| Category | Technology | Version |
+|-----------|------------|---------|
+| Language | Java | 17 |
+| UI Automation | Selenium WebDriver | 4.x |
+| Test Framework | TestNG | 7.x |
+| Build Tool | Maven | 3.x |
+| Design Pattern | Page Object Model | — |
+| Reporting | Allure Report | 2.x |
+| CI/CD | GitHub Actions | Latest |
+| Report Hosting | GitHub Pages | — |
+| Version Control | Git | Latest |
+| Repository Hosting | GitHub | — |
+| IDE | IntelliJ IDEA | 2025+ |
 
 ## Project Structure
 
@@ -61,134 +73,106 @@ selenium-java-testng-automation-framework
 └── README.md
 ```
 
-## Covered Test Flows
-
-The framework currently covers:
-
-- Valid user login
-- Invalid user login
-- Products page validation after login
-- Add a product to the cart
-- Verify cart badge count after adding a product
-- Remove a product from the cart
-- Verify cart badge count after removing a product
-- Open the cart and verify a selected product
-- Complete the checkout process
-- Verify the checkout confirmation message
-- Cancel checkout information and return to the cart
-- Verify the selected product remains in the cart after cancelling checkout
-- Continue shopping from the cart page and return to the product page
+# Framework Features
 
 ## Framework Design
 
-This project follows the Page Object Model design pattern.
+- Page Object Model (POM)
+- Reusable BasePage methods
+- Centralized WebDriver management
+- Configuration via `config.properties`
+- Utility classes for reusable functions
+- Layered architecture
 
-- **Page classes** contain locators and page-specific actions.
-- **Test classes** contain test scenarios and assertions.
-- **BasePage** contains reusable Selenium actions such as click, type, wait, and get text.
-- **BaseTest** manages browser setup and teardown.
-- **ConfigReader** loads test data and environment values from `config.properties`.
-- **Listeners** manage retry logic and screenshots for failed tests.
+## Test Automation
 
-### Architecture
+- End-to-end UI automation
+- Clean Page Object implementation
+- Retry mechanism
+- Screenshot capture on failure
+- Explicit waits
+- Readable and maintainable test design
 
-The framework is organized into layers, allowing each component to have a single responsibility.
+## Reporting
 
-```text
-Test Classes
-      │
-      ▼
-Page Objects
-      │
-      ▼
-Base Page
-      │
-      ▼
-Selenium WebDriver
-      │
-      ▼
-Browser
-```
+- Allure Report integration
+- Screenshot attachments
+- Test execution history
+- GitHub Actions workflow
+- Automatic GitHub Pages deployment
 
-This layered architecture keeps test cases clean and focused on business scenarios while encapsulating UI interactions within reusable page objects. As the application grows, new pages and test cases can be added with minimal changes to the existing framework.
+---
+# Automated Test Coverage
 
-## Prerequisites
+| Feature | Status |
+|----------|--------|
+| Valid Login | ✅ |
+| Invalid Login | ✅ |
+| Products Page Validation | ✅ |
+| Add Product to Cart | ✅ |
+| Remove Product from Cart | ✅ |
+| Cart Badge Validation | ✅ |
+| Cart Verification | ✅ |
+| Checkout Process | ✅ |
+| Checkout Cancellation | ✅ |
+| Continue Shopping | ✅ |
 
-Install the following before running the project:
+---
 
-- Java 17 or later
-- Maven
-- Google Chrome
-- IntelliJ IDEA or another Java IDE
-- Git
+# Framework Architecture
 
-Check your installation:
-
-```bash
-java -version
-mvn -version
-git --version
-```
-
-## Setup Instructions
-
-Clone the repository:
-
-```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/selenium-java-testng-automation-framework.git
-```
-
-Open the project in IntelliJ IDEA and wait for Maven dependencies to download.
-
-Create a local configuration file at:
+The framework follows a layered architecture to separate business scenarios from UI interactions.
 
 ```text
-src/main/resources/config.properties
+              Test Classes
+                    │
+                    ▼
+              Page Objects
+                    │
+                    ▼
+               Base Page
+                    │
+                    ▼
+        Selenium WebDriver
+                    │
+                    ▼
+                Web Browser
 ```
 
-Copy the configuration file:
+Each layer has a single responsibility.
 
-```bash
-cp src/main/resources/config.properties.example src/main/resources/config.properties
-```
+- **Test Classes** contain business scenarios.
+- **Page Objects** encapsulate page interactions.
+- **BasePage** provides reusable Selenium operations.
+- **WebDriver** communicates with the browser.
 
-On Windows Command Prompt, use:
+This design minimizes duplicated code and improves maintainability as the project grows.
 
-```cmd
-copy src\main\resources\config.properties.example src\main\resources\config.properties
-```
+---
 
-Update `config.properties` if needed:
+# Continuous Integration
 
-```properties
-baseUrl=https://www.saucedemo.com/
-username=standard_user
-password=secret_sauce
-firstname=Test
-lastname=User
-postalCode=SW1A1AA
-```
-## Continuous Integration
+The project uses **GitHub Actions** to automatically execute UI tests whenever code is pushed or a pull request is created.
 
-This project uses GitHub Actions to automatically execute UI tests.
+The workflow performs the following steps:
 
-The pipeline performs the following tasks:
-
-- Checkout source code
+- Checkout repository
 - Configure Java 17
 - Cache Maven dependencies
 - Execute Selenium TestNG tests
 - Generate Allure results
 - Upload test artifacts
-- Generate Allure HTML reports
-- Publish reports to GitHub Pages
+- Build Allure HTML report
+- Publish the report to GitHub Pages
 
-  
 ```text
 Developer Push
        │
        ▼
 GitHub Actions
+       │
+       ▼
+Checkout Repository
        │
        ▼
 Build Project
@@ -203,76 +187,116 @@ Generate Allure Report
 Publish to GitHub Pages
 ```
 
-## Running Tests
+---
 
-Run all tests:
+# Running the Project
+
+Clone the repository.
+
+```bash
+git clone https://github.com/killbroiscoming/selenium-saucedemo-automation.git
+```
+
+Navigate into the project.
+
+```bash
+cd selenium-saucedemo-automation
+```
+
+Execute all tests.
 
 ```bash
 mvn clean test
 ```
 
-Run the TestNG suite:
+---
 
-```bash
-mvn clean test -DsuiteXmlFile=src/test/resources/testng.xml
+# Configuration
+
+Create a `config.properties` file.
+
+```properties
+baseUrl=https://www.saucedemo.com/
+username=standard_user
+password=secret_sauce
+firstname=Test
+lastname=User
+postalCode=SW1A1AA
 ```
 
-You can also run individual test classes or methods directly from IntelliJ IDEA.
+---
 
-## Reporting
+# Reporting
 
-TestNG reports are generated after test execution:
+After execution, reports are generated in:
 
 ```text
-target/surefire-reports/
-test-output/
+allure-results/
+screenshots/
+target/
 ```
 
-The project also supports Allure reporting.
-
-Generate and open the Allure report after running tests:
+Generate the Allure report locally.
 
 ```bash
 allure serve allure-results
 ```
 
-The Allure report can include:
+The report includes:
 
-- Test execution status
-- Passed and failed tests
-- Failure details
-- Failed-test screenshots
-- Retry attempts
+- Test execution summary
+- Pass/Fail status
+- Stack traces
+- Failure screenshots
+- Retry history
 
-## Screenshot Capture
+---
 
-When a test fails, `ScreenshotListener` captures a screenshot and attaches it to the Allure report. Screenshots can also be saved locally in the `screenshots/` folder.
+# Screenshot Capture
 
-## Retry Mechanism
+When a test fails, the `ScreenshotListener` automatically captures a screenshot and attaches it to the Allure report to simplify debugging.
 
-The project includes `RetryAnalyzer` to retry tests that fail because of temporary browser timing or UI-loading issues.
+---
 
-Retries should only handle temporary failures. A consistently failing test should be investigated and fixed.
+# Retry Mechanism
 
-## Future Improvements
+The framework includes a reusable `RetryAnalyzer` that automatically retries transient test failures caused by temporary browser synchronization or page loading issues.
 
-- Add GitHub Actions CI/CD pipeline
-- Run tests in headless mode
-- Add cross-browser testing for Chrome, Firefox, and Edge
-- Add TestNG groups for smoke and regression tests
-- Add data-driven testing with TestNG DataProvider
-- Add environment support for QA and staging
-- Add API automation tests using Rest Assured
-- Improve Allure reports with more test steps and attachments
-- Add logging with SLF4J or Log4j2
-- Add parallel test execution
-- Add Docker support
-- Add a GitHub Actions build-status badge
+Persistent failures should be investigated rather than relying on retries.
+
+---
+
+# Future Improvements
+
+- Support headless execution
+- Cross-browser testing (Chrome, Firefox, Edge)
+- TestNG smoke and regression suites
+- Data-driven testing with TestNG DataProviders
+- Environment profiles (QA/UAT/PROD)
+- Parallel execution
+- Docker support
+- Selenium Grid integration
+- Logging with SLF4J / Log4j2
+- Visual regression testing
+- Cross-platform execution (Windows, Linux)
+
+---
+
 
 ## Author
+**Lisa Zhong**
 
-Lisa Zhong
+QA Automation Engineer
 
-## Notes
+**Skills**
 
-This project was created as a practice automation framework to demonstrate UI test automation skills using Java, Selenium WebDriver, TestNG, Maven, and the Page Object Model pattern.
+- Java
+- Selenium WebDriver
+- TestNG
+- Maven
+- Git
+- GitHub Actions
+- Allure Report
+- UI Automation
+- Page Object Model (POM)
+- Test Automation Framework Design
