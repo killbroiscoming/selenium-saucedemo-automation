@@ -10,6 +10,13 @@ This project demonstrates how to design a maintainable Selenium automation frame
 
 The framework separates page objects, reusable Selenium actions, configuration, listeners, and test logic into independent layers, making it easy to maintain and extend as new pages and test scenarios are added.
 
+## Live Demo
+
+| Resource | Link |
+|----------|---|
+| 🚀 Live Allure Report | https://killbroiscoming.github.io/selenium-saucedemo-automation/ |
+| ⚙️ GitHub Actions | https://github.com/killbroiscoming/selenium-saucedemo-automation/actions |
+
 
 # Tech Stack
 
@@ -186,6 +193,34 @@ Generate Allure Report
        ▼
 Publish to GitHub Pages
 ```
+---
+# Screenshots
+
+## GitHub Actions
+
+The CI pipeline automatically builds the project, executes Selenium tests, and publishes the Allure report.
+
+![GitHub Actions](docs/images/github_actions_success.png)
+
+---
+
+## Allure Overview
+
+![Allure Overview](docs/images/allure_overview.png)
+
+---
+
+## Test Details
+
+![Allure Test Details](docs/images/allure_test_details.png)
+
+---
+
+## Failure Screenshot
+
+When a UI test fails, the framework automatically captures a screenshot and attaches it to the Allure report.
+
+![Failure Screenshot](docs/images/Failure_screenshot_UI.png)
 
 ---
 
