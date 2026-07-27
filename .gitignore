@@ -16,7 +16,6 @@ test-output/
 
 ### Selenium screenshots ###
 screenshots/
-*.png
 
 ### Logs ###
 logs/
