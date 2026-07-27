@@ -4,7 +4,7 @@ A Java-based UI automation framework built with **Selenium WebDriver**, **TestNG
 
 The framework automates core e-commerce user journeys on the Sauce Demo application, including authentication, product management, cart validation, and checkout.
 
-# Project Overview
+## Project Overview
 
 This project demonstrates how to design a maintainable Selenium automation framework following industry best practices.
 
@@ -18,7 +18,7 @@ The framework separates page objects, reusable Selenium actions, configuration, 
 | ⚙️ GitHub Actions | https://github.com/killbroiscoming/selenium-saucedemo-automation/actions |
 
 
-# Tech Stack
+## Tech Stack
 
 | Category | Technology | Version |
 |-----------|------------|---------|
@@ -80,9 +80,9 @@ selenium-java-testng-automation-framework
 └── README.md
 ```
 
-# Framework Features
+## Framework Features
 
-## Framework Design
+### Framework Design
 
 - Page Object Model (POM)
 - Reusable BasePage methods
@@ -91,7 +91,7 @@ selenium-java-testng-automation-framework
 - Utility classes for reusable functions
 - Layered architecture
 
-## Test Automation
+### Test Automation
 
 - End-to-end UI automation
 - Clean Page Object implementation
@@ -100,7 +100,7 @@ selenium-java-testng-automation-framework
 - Explicit waits
 - Readable and maintainable test design
 
-## Reporting
+### Reporting
 
 - Allure Report integration
 - Screenshot attachments
@@ -108,8 +108,8 @@ selenium-java-testng-automation-framework
 - GitHub Actions workflow
 - Automatic GitHub Pages deployment
 
----
-# Automated Test Coverage
+
+## Automated Test Coverage
 
 | Feature | Status |
 |----------|--------|
@@ -124,9 +124,9 @@ selenium-java-testng-automation-framework
 | Checkout Cancellation | ✅ |
 | Continue Shopping | ✅ |
 
----
 
-# Framework Architecture
+
+## Framework Architecture
 
 The framework follows a layered architecture to separate business scenarios from UI interactions.
 
@@ -155,9 +155,9 @@ Each layer has a single responsibility.
 
 This design minimizes duplicated code and improves maintainability as the project grows.
 
----
 
-# Continuous Integration
+
+## Continuous Integration
 
 The project uses **GitHub Actions** to automatically execute UI tests whenever code is pushed or a pull request is created.
 
@@ -193,10 +193,10 @@ Generate Allure Report
        ▼
 Publish to GitHub Pages
 ```
----
-# Screenshots
 
-## GitHub Actions
+## Screenshots
+
+### GitHub Actions
 
 The CI pipeline automatically builds the project, executes Selenium tests, and publishes the Allure report.
 
@@ -204,27 +204,27 @@ The CI pipeline automatically builds the project, executes Selenium tests, and p
 
 ---
 
-## Allure Overview
+### Allure Overview
 
 ![Allure Overview](docs/images/allure_overview.png)
 
 ---
 
-## Test Details
+### Test Details
 
 ![Allure Test Details](docs/images/allure_test_details.png)
 
 ---
 
-## Failure Screenshot
+### Failure Screenshot
 
 When a UI test fails, the framework automatically captures a screenshot and attaches it to the Allure report.
 
 ![Failure Screenshot](docs/images/Failure_screenshot_UI.png)
 
----
 
-# Running the Project
+
+## Running the Project
 
 Clone the repository.
 
@@ -244,9 +244,9 @@ Execute all tests.
 mvn clean test
 ```
 
----
 
-# Configuration
+
+## Configuration
 
 Create a `config.properties` file.
 
@@ -259,9 +259,9 @@ lastname=User
 postalCode=SW1A1AA
 ```
 
----
 
-# Reporting
+
+## Reporting
 
 After execution, reports are generated in:
 
@@ -285,23 +285,22 @@ The report includes:
 - Failure screenshots
 - Retry history
 
----
 
-# Screenshot Capture
+
+## Screenshot Capture
 
 When a test fails, the `ScreenshotListener` automatically captures a screenshot and attaches it to the Allure report to simplify debugging.
 
----
 
-# Retry Mechanism
+
+## Retry Mechanism
 
 The framework includes a reusable `RetryAnalyzer` that automatically retries transient test failures caused by temporary browser synchronization or page loading issues.
 
 Persistent failures should be investigated rather than relying on retries.
 
----
 
-# Future Improvements
+## Future Improvements
 
 - Support headless execution
 - Cross-browser testing (Chrome, Firefox, Edge)
@@ -315,7 +314,6 @@ Persistent failures should be investigated rather than relying on retries.
 - Visual regression testing
 - Cross-platform execution (Windows, Linux)
 
----
 
 
 ## Author
