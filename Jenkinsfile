@@ -25,5 +25,10 @@ pipeline{
         always{
             allure includeProperties:false, jdk:'', results: [[path:'allure-results']]
         }
+        failure{
+            emailext body:"The build failed! Check logs here: ${env.BUILD_URL}",
+            subject: "FAILED: Job  ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
+            to: '603411161@qq.com'
+        }
     }
 }
