@@ -18,7 +18,7 @@ public class LoginTest extends BaseTest {
                 ConfigReader.getProperty("username"),
                 ConfigReader.getProperty("password"));
 
-    Assert.assertFalse(productsPage.isProductPageDisplayed());
+    Assert.assertTrue(productsPage.isProductPageDisplayed());
     }
 
     @Test
