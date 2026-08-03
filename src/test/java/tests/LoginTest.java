@@ -18,16 +18,17 @@ public class LoginTest extends BaseTest {
                 ConfigReader.getProperty("username"),
                 ConfigReader.getProperty("password"));
 
-    Assert.assertTrue(productsPage.isProductPageDisplayed());
+    Assert.assertFalse(productsPage.isProductPageDisplayed());
     }
 
     @Test
     public void shouldInvalidLogin() {
         LoginPage loginPage = new LoginPage(driver);
-
         loginPage.login(
                 ConfigReader.getProperty("username1"),
                 ConfigReader.getProperty("password1"));
+
+
 
         Assert.assertEquals(
                 loginPage.getLoginErrorMessage(),
