@@ -72,7 +72,6 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
                     <systemPropertyVariables>
-                        <!-- Forces allure to output results inside the project root matching your CI path -->
                         <allure.results.directory>${project.basedir}/allure-results</allure.results.directory>
                     </systemPropertyVariables>
                 </configuration>
