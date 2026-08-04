@@ -317,7 +317,7 @@ Persistent failures should be investigated rather than relying on retries.
 
 
 ## Author
-**Lisa Zhong**
+**Lisha Zhong**
 
 QA Automation Engineer
 
