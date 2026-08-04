@@ -1,8 +1,11 @@
 # Selenium Java Test Automation Framework
 [![Selenium Automation Testing](https://github.com/killbroiscoming/selenium-saucedemo-automation/actions/workflows/ui-tests.yml/badge.svg)](https://github.com/killbroiscoming/selenium-saucedemo-automation/actions/workflows/ui-tests.yml)
-A Java-based UI automation framework built with **Selenium WebDriver**, **TestNG**, and **Maven**. The project demonstrates a clean and scalable automation architecture using the **Page Object Model (POM)**, reusable page components, retry mechanisms, Allure reporting, and GitHub Actions CI.
 
-The framework automates core e-commerce user journeys on the Sauce Demo application, including authentication, product management, cart validation, and checkout.
+A scalable UI test automation framework built with **Java**, **Selenium WebDriver**, **TestNG**, and **Maven**, following the **Page Object Model (POM)** design pattern.
+
+The project demonstrates how modern UI automation frameworks are designed for maintainability, reusability, and continuous integration. It includes retry mechanisms, automatic screenshot capture, Allure reporting, GitHub Actions, and Jenkins Pipeline integration.
+
+The framework automates end-to-end user journeys on the SauceDemo e-commerce application and serves as a portfolio project showcasing enterprise automation testing practices.
 
 ## Project Overview
 
@@ -20,19 +23,20 @@ The framework separates page objects, reusable Selenium actions, configuration, 
 
 ## Tech Stack
 
-| Category | Technology | Version |
-|-----------|------------|---------|
-| Language | Java | 17 |
+| Category | Technology         | Version |
+|-----------|--------------------|---------|
+| Language | Java               | 17 |
 | UI Automation | Selenium WebDriver | 4.x |
-| Test Framework | TestNG | 7.x |
-| Build Tool | Maven | 3.x |
-| Design Pattern | Page Object Model | — |
-| Reporting | Allure Report | 2.x |
-| CI/CD | GitHub Actions | Latest |
-| Report Hosting | GitHub Pages | — |
-| Version Control | Git | Latest |
-| Repository Hosting | GitHub | — |
-| IDE | IntelliJ IDEA | 2025+ |
+| Test Framework | TestNG             | 7.x |
+| Build Tool | Maven              | 3.x |
+| Design Pattern | Page Object Model  | — |
+| Reporting | Allure Report      | 2.x |
+| CI/CD | GitHub Actions     | Latest |
+| CI/CD | Jenkins            | Latest |
+| Report Hosting | GitHub Pages       | — |
+| Version Control | Git                | Latest |
+| Repository Hosting | GitHub             | — |
+| IDE | IntelliJ IDEA      | 2025+ |
 
 ## Project Structure
 
@@ -43,39 +47,25 @@ selenium-java-testng-automation-framework
 │   ├── main
 │   │   ├── java
 │   │   │   ├── base
-│   │   │   │   └── BasePage.java
 │   │   │   ├── pages
-│   │   │   │   ├── LoginPage.java
-│   │   │   │   ├── ProductsPage.java
-│   │   │   │   ├── CartPage.java
-│   │   │   │   ├── CheckoutPage.java
-│   │   │   │   ├── CheckoutOverviewPage.java
-│   │   │   │   └── CheckoutCompletePage.java
 │   │   │   └── utils
-│   │   │       ├── ConfigReader.java
-│   │   │       └── ScreenshotUtil.java
 │   │
 │   └── test
 │       ├── java
 │       │   ├── base
-│       │   │   └── BaseTest.java
 │       │   ├── listeners
-│       │   │   ├── RetryAnalyzer.java
-│       │   │   ├── RetryListener.java
-│       │   │   └── ScreenshotListener.java
 │       │   └── tests
-│       │       ├── LoginTest.java
-│       │       ├── ProductsTest.java
-│       │       ├── CartTest.java
-│       │       └── CheckoutTest.java
 │       └── resources
-│           └── config.properties
 │
 ├── .github
 │   └── workflows
 │       └── selenium-tests.yml
+│
+├── docs
+│   └── images
 ├── pom.xml
 ├── testng.xml
+├── Jenkinsfile
 ├── .gitignore
 └── README.md
 ```
@@ -155,44 +145,157 @@ Each layer has a single responsibility.
 
 This design minimizes duplicated code and improves maintainability as the project grows.
 
-
-
 ## Continuous Integration
 
-The project uses **GitHub Actions** to automatically execute UI tests whenever code is pushed or a pull request is created.
+This project demonstrates both cloud-based and self-hosted Continuous Integration.
 
-The workflow performs the following steps:
+### GitHub Actions
 
-- Checkout repository
-- Configure Java 17
-- Cache Maven dependencies
-- Execute Selenium TestNG tests
-- Generate Allure results
-- Upload test artifacts
-- Build Allure HTML report
-- Publish the report to GitHub Pages
+Every push or pull request automatically triggers the following workflow:
 
-```text
-Developer Push
-       │
-       ▼
-GitHub Actions
-       │
-       ▼
-Checkout Repository
-       │
-       ▼
-Build Project
-       │
-       ▼
-Run Selenium Tests
-       │
-       ▼
-Generate Allure Report
-       │
-       ▼
-Publish to GitHub Pages
 ```
+
+Git Push
+
+↓
+
+GitHub Actions
+
+↓
+
+Checkout Repository
+
+↓
+
+Set up Java
+
+↓
+
+Maven Build
+
+↓
+
+Run Selenium Tests
+
+↓
+
+Generate Allure Results
+
+↓
+
+Publish GitHub Pages
+
+```
+
+---
+
+### Jenkins Pipeline
+
+The same framework is executed using a Jenkins Declarative Pipeline.
+
+```
+
+Checkout
+
+↓
+
+Compile
+
+↓
+
+Run UI Tests
+
+↓
+
+Generate Allure Report
+
+↓
+
+Archive Screenshots
+
+↓
+
+Build Complete
+
+```
+
+---
+
+## CI/CD Architecture
+
+```
+
+Developer
+
+│
+
+Git Push
+
+│
+
+┌──────────────┴──────────────┐
+
+│                             │
+
+▼                             ▼
+
+GitHub Actions          Jenkins Pipeline
+
+│                             │
+
+└──────────────┬──────────────┘
+
+▼
+
+Maven Build
+
+▼
+
+Selenium + TestNG
+
+▼
+
+Allure Report
+
+▼
+
+GitHub Pages / Jenkins
+
+```
+
+---
+
+## Jenkins Pipeline
+
+The project contains a Declarative Jenkins Pipeline (`Jenkinsfile`) that automates the complete UI testing workflow.
+
+Example:
+
+```groovy
+pipeline {
+
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build & Test') {
+            steps {
+                bat 'mvn clean test'
+            }
+        }
+
+    }
+
+}
+```
+
+---
 
 ## Screenshots
 
@@ -221,6 +324,19 @@ The CI pipeline automatically builds the project, executes Selenium tests, and p
 When a UI test fails, the framework automatically captures a screenshot and attaches it to the Allure report.
 
 ![Failure Screenshot](docs/images/Failure_screenshot_UI.png)
+
+### Jenkins Dashboard
+
+![Jenkins Pipeline](docs/images/Jenkins_dashboard.png)
+
+### Jenkins Job Stage
+
+![Jenkins Job Detail](docs/images/Jenkins_job_detail.png)
+
+### Jenkins Allure Overview
+
+![Allure Overview](docs/images/Jenkins_Allure_report.png)
+
 
 
 
@@ -302,17 +418,16 @@ Persistent failures should be investigated rather than relying on retries.
 
 ## Future Improvements
 
-- Support headless execution
-- Cross-browser testing (Chrome, Firefox, Edge)
-- TestNG smoke and regression suites
-- Data-driven testing with TestNG DataProviders
-- Environment profiles (QA/UAT/PROD)
-- Parallel execution
-- Docker support
-- Selenium Grid integration
-- Logging with SLF4J / Log4j2
-- Visual regression testing
-- Cross-platform execution (Windows, Linux)
+- Docker Support
+- Selenium Grid
+- Parallel Execution
+- Cross-browser Execution
+- GitHub Actions Matrix Builds
+- Environment Profiles
+- Data-driven Testing
+- API Automation Integration (Rest Assured)
+- Slack Notifications
+- Playwright UI Automation
 
 
 
@@ -329,6 +444,7 @@ QA Automation Engineer
 - Maven
 - Git
 - GitHub Actions
+- Jenkins
 - Allure Report
 - UI Automation
 - Page Object Model (POM)
