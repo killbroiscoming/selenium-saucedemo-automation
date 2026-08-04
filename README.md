@@ -342,9 +342,13 @@ When a UI test fails, the framework automatically captures a screenshot and atta
 
 ![Jenkins Pipeline](docs/images/Jenkins_dashboard.png)
 
-### Jenkins Job Stage
+---
 
-![Jenkins Job Detail](docs/images/Jenkins_job_detail.png)
+### Jenkins Build
+
+![Jenkins Build](docs/images/Jenkins_job_detail.png)
+
+---
 
 ### Jenkins Allure Overview
 
